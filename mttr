@@ -1,0 +1,113 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+##Copyright (c) 2019 Rodrigo Ruiz
+##this software are edited based on the work of Mr. Mueller to include
+##generation of MTTR table for Literature review. 
+##Copyright (c) 2012 Andreas Christian Mueller
+##Permission is hereby granted, free of charge, to any person obtaining a copy of
+##this software and associated documentation files (the "Software"), to deal in
+##the Software without restriction, including without limitation the rights to
+##use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+##the Software, and to permit persons to whom the Software is furnished to do so,
+##subject to the following conditions:
+##The above copyright notice and this permission notice shall be included in all
+##copies or substantial portions of the Software.
+##the software is provided "as is", without warranty of any kind, express or
+##implied, including but not limited to the warranties of merchantability, fitness
+##for a particular purpose and non-infringement. In no event shall the authors or
+##copyright holders be liable for any claim, damages or other liability, whether
+##in an action of contract, tort or otherwise, arising from, out of or in
+##connection with the software or the use or other dealings in the software.
+from os import path
+from collections import Counter
+from PIL import Image
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+import sys
+import pickle
+import operator
+filepathorigin = "project/2_txtarticles/"
+header_list = list()
+header_list_coma = list()
+from wordcloud import WordCloud, STOPWORDS
+listadir = sorted(os.listdir(filepathorigin))
+for num,x in enumerate(listadir):
+    if x == "_papersconcat.txt":
+        listadir.pop(num)
+        listadir.insert(0, x)
+print(listadir)
+for arquivo in listadir:
+    if arquivo.endswith(".txt"):
+             fileparameter = str(arquivo)
+        d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
+        # Read the whole text.
+        with open(filepathorigin+fileparameter, "rb") as _file_:
+            text = (_file_.read()).decode("utf-8")
+        # read the mask image
+        # taken from
+        mascara = np.array(Image.open(path.join(d, "cloud_mask.png")))
+        # excluded words
+        stopwords = set(STOPWORDS)
+        stopwords.add("n '")
+        stopwords.add("et al")
+        stopwords.add("et. al")
+        stopwords.add("work")
+        stopwords.add("will")
+        stopwords.add("task")
+        stopwords.add("et")
+        stopwords.add("al")
+        stopwords.add("n'")
+        stopwords.add("'")
+        stopwords.add("figure")
+        stopwords.add("table")
+        stopwords.add("may")
+        stopwords.add("value")
+        stopwords.add("order")
+        stopwords.add("annex")
+        stopwords.add("Annex")
+        stopwords.add("the")
+        wc = WordCloud(background_color="white", max_words=20, mask=mascara,
+                       stopwords=stopwords, contour_width=4, contour_color='steelblue',collocations=False)
+        # generate word cloud
+        text2 = text
+        wc.generate(text2)
+        # store cloud to file
+        wc.to_file("project/5_cloud/"+fileparameter+".png")
+        # write words and frequency to Taxonomy file
+        words=wc.process_text(text2)
+        sorted_words = sorted(words.items(), key=operator.itemgetter(1))
+        sorted_words.reverse()
+        ##############header of MTTR file
+        arquivo = open("project/5_cloud/words.txt", 'r') 
+        conteudo = arquivo.readlines()
+        line_list = list()
+        conteudo.append(fileparameter)
+        print(fileparameter)
+        for x in sorted_words[:20]:
+            if fileparameter == "_papersconcat.txt":               
+                header_list.append(str(x[0]))
+                arquivo.close()
+                arquivo = open("project/5_cloud/words.txt", 'w') 
+                arquivo.writelines(fileparameter)
+                arquivo.writelines([","+x for x in header_list])    
+                arquivo.writelines('\n')
+                arquivo.close()                               
+            if fileparameter != "_papersconcat.txt":                
+                dict_sw = dict()
+                lista_ordenada = list()
+                for each_sorted_word in sorted_words:
+                    dict_sw[each_sorted_word[0]] = each_sorted_word[1]
+                
+                for num,colheader in enumerate(header_list):
+                    if not colheader in dict_sw.keys():
+                        lista_ordenada.append(str(0))
+                    else:
+                        lista_ordenada.append(str(dict_sw[colheader]))                                       
+        if fileparameter != "_papersconcat.txt":
+            arquivo.close()
+            arquivo = open("project/5_cloud/words.txt", 'a') 
+            arquivo.writelines(fileparameter+","+(','.join(lista_ordenada)))    
+            arquivo.writelines('\n')
+            arquivo.close()
+        #######end of code#######
