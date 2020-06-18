@@ -20,6 +20,40 @@
 ##connection with the software or the use or other dealings in the software.
 ## revised by Natasha in 18/05/2020 and works
 
+##you need to instal python 3.x
+##c++ 14
+##pip install pillow
+##pip install numpt
+##pip install matplotlib
+##pip install os-sys
+##pip install pickle
+##pip install wordcloud
+
+##create folder mttr
+##create folder mttr\projetc
+##create folder mttr\projetc\1_pdfart
+##create folder mttr\projetc\2_txtart
+##create folder mttr\projetc\3_txtcon
+##create folder mttr\projetc\4_resume
+##create folder mttr\projetc\5_cloud
+##create folder mttr\projetc\temp
+
+##copy execute_mttr.bat to mttr folder
+
+##how to use?
+
+##find your pdf papers on researchgate, ieee, scopus or acm and copy to 1_pdfart
+## use any online service to convert pdf into txt and copy to 2_txtart
+## execute the file execute_mttr.bat in mttr folder
+
+
+
+
+
+
+
+
+
 from os import path
 from collections import Counter
 from PIL import Image
