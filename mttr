@@ -18,6 +18,8 @@
 ##copyright holders be liable for any claim, damages or other liability, whether
 ##in an action of contract, tort or otherwise, arising from, out of or in
 ##connection with the software or the use or other dealings in the software.
+## revised by Natasha in 18/05/2020 and works
+
 from os import path
 from collections import Counter
 from PIL import Image
@@ -27,7 +29,7 @@ import os
 import sys
 import pickle
 import operator
-filepathorigin = "project/2_txtarticles/"
+filepathorigin = "project/2_txtart/"
 header_list = list()
 header_list_coma = list()
 from wordcloud import WordCloud, STOPWORDS
@@ -39,11 +41,10 @@ for num,x in enumerate(listadir):
 print(listadir)
 for arquivo in listadir:
     if arquivo.endswith(".txt"):
-             fileparameter = str(arquivo)
+        fileparameter = str(arquivo)
         d = path.dirname(__file__) if "__file__" in locals() else os.getcwd()
         # Read the whole text.
-        with open(filepathorigin+fileparameter, "rb") as _file_:
-            text = (_file_.read()).decode("utf-8")
+        with open(filepathorigin+fileparameter, "rb") as _file_:text = (_file_.read()).decode("latin1")
         # read the mask image
         # taken from
         mascara = np.array(Image.open(path.join(d, "cloud_mask.png")))
@@ -67,8 +68,7 @@ for arquivo in listadir:
         stopwords.add("annex")
         stopwords.add("Annex")
         stopwords.add("the")
-        wc = WordCloud(background_color="white", max_words=20, mask=mascara,
-                       stopwords=stopwords, contour_width=4, contour_color='steelblue',collocations=False)
+        wc = WordCloud(background_color="white", max_words=20, mask=mascara,stopwords=stopwords, contour_width=4, contour_color='steelblue',collocations=False)
         # generate word cloud
         text2 = text
         wc.generate(text2)
