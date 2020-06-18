@@ -39,12 +39,33 @@
 ##create folder mttr\projetc\temp
 
 ##copy execute_mttr.bat to mttr folder
+##copy mttr.py to mttr\cloudword
+##copy cloud_massk.png to mttr\clousword
 
 ##how to use?
 
 ##find your pdf papers on researchgate, ieee, scopus or acm and copy to 1_pdfart
 ## use any online service to convert pdf into txt and copy to 2_txtart
 ## execute the file execute_mttr.bat in mttr folder
+##waint some minutes around 5 for 14 articles and 1 book
+
+## go to mttr\project\5_coud
+## you will find one cloud image for each paper and onde cloud of all papers concatenated
+## you will find words.txt
+## open words.txt with excell
+## delimited as ,
+
+##open mttrmodelspreadshit
+##copy and paste from words.txt to model 
+
+## add manualy expressions using find command, se example in mttr page
+## and adjust and sord horizontal and vertical, delete blank collumns and rows
+
+## put it into your paper or Thesis and Cite 
+
+##
+
+
 
 
 
