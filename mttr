@@ -63,15 +63,21 @@
 
 ## put it into your paper or Thesis and Cite 
 
-##
+##Method and Tool for Generating Table of Relevance in Literature Review (MTTR)
+##Natasha Ruiz1, Rogério Winter2, Dr Ferrucio de Franco Rosa3, 
+##Dr Pancham Shukla4, Prof. Hassan Kazemian5
+##1 DIMEC/CTI-Renato_Archer -Brazilian Ministry of Science, Technology, Innovation and Communications /School of Computing and Digital Media, London Metropolitan University
+## 2Brazilian_Army/FEEC/UNICAMP
+##3 DIMEC/CTI-Renato_Archer – Brazilian Ministry of Science, Technology, Innovation and Communications /UNIFACCAMP
+##4 Course Leader and Academic Tutor for UG Engineering Courses School of Computing and Digital Media (SCDM) London Metropolitan University
+##5Senior manager for research degree, chair of RSPG and PhD coordinator, Head of Intelligent Systems Research Centre, School of Computing and Digital Media, London Metropolitan University
+##1natashasruiz@outlook.com, 2rogwinter@gmail.com, 3ferrucio.rosa@cti.gov.br
+##4p.shukla@londonmet.ac.uk, 5kazemian@staff.londonmet.ac.uk
 
+ 
+##Abstract— Nowadays, software engineering solutions for supporting the scientific research process are needed. As we have many articles in thousands of scientific sources, methods to improve and ease the selection and prioritization of research works are demanded, mainly in systematic or quasi-systematic literature reviews. We can increase the productivity of software engineering researchers by using structured relevance tables in literature reviews. In this paper, a method and its software tool are presented aiming at generating relevance tables. From the content of the papers (Title, Abstract, etc.), word clouds are generated for selecting and organizing the works, and a heat map based relevance table arises aiming at prioritizing the works to be used in the literature review. The main contributions are i) the method for generating relevance tables in literature reviews (MTTR); ii) a software tool for supporting MTTR. The method and software tool are meant to be useful for researchers who need to organize and prioritize works in comprehensive literature reviews. 
 
-
-
-
-
-
-
+##Sumitted to IEEE Transactions on Learning Technologies
 
 
 
